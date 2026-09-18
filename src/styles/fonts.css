@@ -1,0 +1,22 @@
+/* Fonts */
+
+/* JetBrains Mono: https://www.jetbrains.com/lp/mono/ */
+@font-face {
+	font-family: 'JetBrains Mono Regular';
+	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Regular.woff2');
+}
+
+@font-face {
+	font-family: 'JetBrains Mono Medium';
+	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Medium.woff2');
+}
+
+@font-face {
+	font-family: 'JetBrains Mono Semibold';
+	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'JetBrains Mono Bold';
+	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Bold.woff2');
+}
