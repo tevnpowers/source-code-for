@@ -13,20 +13,27 @@
 
 <style>
 	:root {
+		/* light theme palette */
+		--white: #FAFAFA;
+		--blue: #2868F0;
+
+		/* dark theme palette */
 		--black: #252728;
 		--green: #86CF86;
-		--white: #FAFAFA;
-
-		--green-dimmed: #86CF8640;
 	}
 
 	html {
-		  color-scheme: light dark;
+		color-scheme: light dark;
+
+		--background: light-dark(var(--white), var(--black));
+		--background-reverse: light-dark(var(--black), var(--white));
+		--text-primary: light-dark(var(--black), var(--white));
+		--text-secondary: light-dark(var(--blue), var(--green));
 	}
 
 	html, body {
 		margin: 0;
 		padding: 0;
-		background-color: var(--black);
+		background-color: var(--background);
 	}
 </style>

@@ -20,3 +20,8 @@
 	font-family: 'JetBrains Mono Bold';
 	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Bold.woff2');
 }
+
+@font-face {
+	font-family: 'JetBrains Mono ExtraBold';
+	src: url('/fonts/JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-ExtraBold.woff2');
+}

@@ -1,9 +1,28 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
+	import { onMount } from 'svelte';
 	import '../styles/fonts.css'
 
 	let { children } = $props();
+
+	let lightTheme = $state(false);
+
+	onMount(() => {
+		const html = document.querySelector('html');
+		if (html) {
+			console.log('Initial value: ', html.style.getPropertyValue("color-scheme"));
+		}
+	});
+
+	$effect(() => {
+		const html = document.querySelector('html');
+
+		if (html) {
+			html.style.setProperty("color-scheme", lightTheme ? "light" : "dark");
+			console.log('Current value: ', html.style.getPropertyValue("color-scheme"));
+		}
+	});
 </script>
 
 <svelte:head>
@@ -29,10 +48,10 @@
 		<!-- Dark/light mode switch -->
 		<div class="toggle-container">
 			<label class="switch">
-				<input type="checkbox">
+				<input type="checkbox" bind:checked={lightTheme}>
 				<span class="slider round"></span>
 			</label>
-			<span class="label-text">Dark theme</span>
+			<span class="label-text">{lightTheme ? "Light" : "Dark"} theme</span>
 		</div>
 	</header>
 
@@ -43,6 +62,7 @@
 
 	<!-- Footer appears on every route -->
 	<footer>
+		<!-- TODO: Dynamically generate path -->
 		<div class="path">/home</div>
 		<div class="newsletter-container">
 			<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
@@ -59,6 +79,8 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: space-between;
+
+		background-color: var(--background);
 	}
 
 	main {
@@ -90,12 +112,14 @@
 
 	nav a {
 		font-size: 22px;
+		color: var(--text-primary);
 		text-decoration: none;
 		text-transform: lowercase;
 	}
 
 	.label-text {
 		font-size: 18px;
+		color: var(--text-primary);
 		text-transform: lowercase;
 	}
 
@@ -135,8 +159,8 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: var(--black);
-		border: 2px solid var(--white);
+		background-color: transparent;
+		border: 2px solid var(--text-primary);
 		-webkit-transition: .4s;
 		transition: .4s;
 	}
@@ -148,17 +172,9 @@
 		width: 16px;
 		left: 4px;
 		bottom: 4px;
-		background-color: var(--white);
+		background-color: var(--background-reverse);
 		-webkit-transition: .4s;
 		transition: .4s;
-	}
-
-	input:checked + .slider {
-		background-color: #2196F3;
-	}
-
-	input:focus + .slider {
-		box-shadow: 0 0 1px #2196F3;
 	}
 
 	input:checked + .slider:before {
@@ -177,10 +193,11 @@
 	}
 
 	footer {
-		margin-bottom: 4%;
+		margin: 4% 0;
 		padding: 0;
 		height: fit-content;
 
+		color: var(--text-secondary);
 		font-family: 'JetBrains Mono Medium';
 	}
 
@@ -193,19 +210,6 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-end;
-	}
-
-	/* Dark Mode */
-	.dark-mode {
-		background-color: var(--black);
-	}
-
-	.dark-mode nav a, .dark-mode .label-text {
-		color: var(--white);
-	}
-
-	.dark-mode footer {
-		color: var(--green);
 	}
 
 	/* Light Mode */
