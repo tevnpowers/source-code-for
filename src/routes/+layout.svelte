@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
-	import { onMount } from 'svelte';
+	import MailIcon from '$lib/icons/MailIcon.svelte';
+	import GitHubLogo from '$lib/icons/GitHubLogo.svelte';
 	import '../styles/fonts.css'
 
 	let { children } = $props();
@@ -64,8 +66,16 @@
 	<footer>
 		<!-- TODO: Dynamically generate path -->
 		<div class="path">/home</div>
-		<div class="newsletter-container">
-			<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
+		<div class="contact-container">
+			<div class="newsletter-container">
+				<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
+			</div>
+			<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
+				<GitHubLogo height={32} width={32} />
+			</a>
+			<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
+				<MailIcon height={36} width={36} />
+			</a>
 		</div>
 	</footer>
 </div>
@@ -205,15 +215,27 @@
 		font-size: 22px;
 	}
 
+	.contact-container {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 12px;
+	}
+
 	.newsletter-container {
 		min-width: 400px;
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 		justify-content: flex-end;
 	}
 
-	/* Light Mode */
-
+	a.button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 600px) {
