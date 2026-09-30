@@ -28,3 +28,6 @@ src/lib/server/db/sqlite.db*
 
 # Fonts
 /static/fonts/JetBrainsMono-2.304/
+
+# Image assets
+/src/lib/assets/images/

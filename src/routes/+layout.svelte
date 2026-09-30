@@ -43,7 +43,7 @@
 		<!-- Navigation menu -->
 		<nav>
 			<a href={resolve('/')}>Home</a>
-			<a href={resolve('/author')}>Authors</a>
+			<a href={resolve('/author')}>Users</a>
 			<a href={resolve('/blog')}>Blog</a>
 		</nav>
 
