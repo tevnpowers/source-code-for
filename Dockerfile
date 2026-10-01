@@ -5,7 +5,6 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Define a build argument with a default value
-ARG DB_URL=file:src/lib/server/db/sqlite.db
 RUN yarn run build
 
 FROM node:22-alpine
