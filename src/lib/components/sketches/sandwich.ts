@@ -1,20 +1,28 @@
 export class Sandwich {
 	name: string;
-	action: string;
+	flavor: number;
+	health: number;
+	nostalgia: number;
+	instruction: string;
 	ingredients: ( Bread | Ingredient)[];
 
-	constructor(name: string, action: string) {
+	constructor(name: string, flavor: number, health: number, nostalgia: number, instruction: string) {
 		// The name of this sandwich
 		this.name = name;
 
-		// Action for cooking and serving the sandwich after preparing.
+		// Instruction for cooking and serving the sandwich after preparing.
 		// e.g. serve room temp, hot, cold, panini pressed, grilled, toasted?
-		this.action = action;
+		this.instruction = instruction;
+
+		// Various scores in the range [1, 10]
+		this.flavor = flavor;
+		this.health = health;
+		this.nostalgia = nostalgia;
 
 		// The list of ingredients (in order from bottom to top)
 		// Starts empty, we add ingredients later.
 		this.ingredients = [];
-		}
+	}
 
 		// Add a piece of bread to our list of ingredients
 	addBread(bread: Bread) {

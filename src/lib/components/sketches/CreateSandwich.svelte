@@ -3,29 +3,37 @@
 	import { Bread, Ingredient } from "./sandwich";
 	import SandwichSketch from "./SandwichSketch.svelte";
 	import TrashIcon from "$lib/icons/TrashIcon.svelte";
+	import DownArrowIcon from "$lib/icons/DownArrowIcon.svelte";
+	import UpArrowIcon from "$lib/icons/UpArrowIcon.svelte";
 
 	interface Props {
 		breads: Bread[];
 		meats: Ingredient[];
+		seafood: Ingredient[];
 		produce: Ingredient[];
 		cheeses: Ingredient[];
 		condiments: Ingredient[];
 		spreads: Ingredient[];
 	}
 
-	let { breads, meats, produce, cheeses, condiments, spreads }: Props = $props();
+	let { breads, meats, seafood, produce, cheeses, condiments, spreads }: Props = $props();
 
-	let actions: string[] = [
+	let instructions: string[] = [
+		'none',
 		'cold',
-		'room temp',
-		'panini press',
-		'toast',
-		'pan-fry',
+		'toasted',
+		'grilled'
 	]
 
+	let name = $state('');
+	let description = $state('');
+	let flavor = $state(5);
+	let health = $state(5);
+	let nostalgia = $state(5);
+
+	let selected_instruction = $state(instructions[0]);
+
 	const bridge = createP5Bridge({
-		name: '',
-		action: actions[1],
 		ingredients: [] as (Bread|Ingredient)[]
 	});
 
@@ -36,6 +44,11 @@
 	function removeIngredient(index: number) {
 		bridge.state.ingredients.splice(index, 1);
 	}
+
+
+	function saveSandwich() {
+		alert('This feature is coming soon!');
+	}
 </script>
 
 <div class="container">
@@ -43,15 +56,42 @@
 	<SandwichSketch bridge={bridge} height={600} width={600}/>
 
 	<div class="name-group">
-		<label for="fname">Sandwich Name:</label>
-		<input type="text" id="sandwich-name" name="sandwich-name" bind:value={bridge.state.name}>
+		<label for="sandwich-name">Sandwich Name:</label>
+		<input type="text" id="sandwich-name" name="sandwich-name" bind:value={name}>
 	</div>
 
-	<div class="sandwich-actions">
-		<p>Serve:</p>
-		{#each actions as action, i (i)}
-			<input type="radio" id="action-{action}" name="sandwich-actions" value="{action}" bind:group={bridge.state.action}>
-			<label for="action-{action}">{action}</label><br>
+	<div class="description-group">
+		<label for="sandwich-description">Description:</label>
+		<textarea id="sandwich-description" name="sandwich-description" bind:value={description}></textarea>
+	</div>
+
+	<div class="score-group">
+		<div class="score-controls">
+			<label for="flavor-score">Flavor:</label>
+			<span>{flavor}</span>
+			<input id="flavor-score" type="range" min="1" max="10" bind:value={flavor}>
+		</div>
+
+		<div class="score-controls">
+			<label for="health-score">Health:</label>
+			<span>{health}</span>
+			<input id="health-score" type="range" min="1" max="10" bind:value={health}>
+		</div>
+		
+		<div class="score-controls">
+			<label for="nostalgia-score">Nostalgia:</label>
+			<span>{nostalgia}</span>
+			<input id="nostalgia-score" type="range" min="1" max="10" bind:value={nostalgia}>
+		</div>
+	</div>
+
+	<div class="sandwich-instructions">
+		<p>Instruction:</p>
+		{#each instructions as instruction, i (i)}
+			<div style="display: flex;">
+				<input type="radio" id="instruction-{instruction}" name="sandwich-instructions" value="{instruction}" bind:group={selected_instruction}>
+				<label for="instruction-{instruction}">{instruction}</label><br>
+			</div>
 		{/each}
 	</div>
 
@@ -70,6 +110,11 @@
 							<optgroup label="Meat">
 								{#each meats as meat (meat.name)}
 									<option value={meat}>{meat.name}</option>
+								{/each}
+							</optgroup>
+							<optgroup label="Seafood">
+								{#each seafood as seafood_item (seafood_item.name)}
+									<option value={seafood_item}>{seafood_item.name}</option>
 								{/each}
 							</optgroup>
 							<optgroup label="Produce">
@@ -93,6 +138,12 @@
 								{/each}
 							</optgroup>
 						</select>
+						<button class="shift-button" aria-label="Move ingredient up in order">
+							<UpArrowIcon width={20} height={20} />
+						</button>
+						<button class="shift-button" aria-label="Move ingredient down in order">
+							<DownArrowIcon width={20} height={20} />
+						</button>
 						<button class="remove-button" onclick={() => removeIngredient(index)} aria-label="Remove">
 							<TrashIcon width={18} height={18} color='#86CF86' title='Remove Ingredient' description='Remove ingredient from sandwich'/>
 						</button>
@@ -106,6 +157,7 @@
 		</div>
 	{/if}
 	<button onclick={addIngredient} class="button">Add Ingredient</button>
+	<button onclick={saveSandwich} class="button">Save to Community Lunchbox</button>
 </div>
 
 <style>
@@ -116,7 +168,7 @@
 		justify-content: center;
 		gap: 12px;
 
-		font-family: 'JetBrains Mono Regular';
+		font-family: 'JetBrains Mono Bold';
 		color: var(--text-primary);
 	}
 
@@ -127,10 +179,10 @@
 		line-height: 115%;
 	}
 
-	.name-group {
+	.name-group, .description-group {
 		display: flex;
 		flex-direction: row;
-		align-items: center;
+		align-items: start;
 		justify-content: start;
 		width: 100%;
 		gap: 4px;
@@ -140,11 +192,32 @@
 		flex: 1;
 	}
 
-	.sandwich-actions {
+	.description-group textarea {
+		width: 100%;
+	}
+
+	.score-group {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		justify-content: start;
+		gap: 12px;
+	}
+
+	.score-controls {
+		display: flex;
+		gap:12px;
+	}
+
+	.score-controls input {
+		flex: 1;
+	}
+
+	.sandwich-instructions {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		justify-content: center;
+		justify-content: start;
 		flex-wrap: wrap;
 		gap: 12px;
 	}
@@ -165,7 +238,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		gap: 16px;
+		gap: 12px;
 	}
 
 	.empty-list {
@@ -179,7 +252,7 @@
 		color: var(--text-primary);
 	}
 
-	.remove-button {
+	.remove-button, .shift-button {
 		background: none;
 		color: inherit;
 		border: none;

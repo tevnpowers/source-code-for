@@ -114,6 +114,7 @@
 	<CreateSandwich
 		breads={data.breads.map(b => transport.Bread.decode(b))}
 		meats={data.meats.map(m => transport.Ingredient.decode(m))}
+		seafood={data.seafood.map(s => transport.Ingredient.decode(s))}
 		produce={data.produce.map(p => transport.Ingredient.decode(p))}
 		cheeses={data.cheeses.map(c => transport.Ingredient.decode(c))}
 		condiments={data.condiments.map(c => transport.Ingredient.decode(c))}
