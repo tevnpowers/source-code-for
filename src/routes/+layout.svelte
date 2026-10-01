@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import MailIcon from '$lib/icons/MailIcon.svelte';
@@ -9,15 +8,6 @@
 	let { children } = $props();
 
 	let lightTheme = $state(false);
-
-	/*
-	onMount(() => {
-		const html = document.querySelector('html');
-		if (html) {
-			console.log('Initial value: ', html.style.getPropertyValue("color-scheme"));
-		}
-	});
-	*/
 
 	$effect(() => {
 		const html = document.querySelector('html');
