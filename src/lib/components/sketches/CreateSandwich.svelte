@@ -31,9 +31,8 @@
 	let health = $state(5);
 	let nostalgia = $state(5);
 
-	let selected_instruction = $state(instructions[0]);
-
 	const bridge = createP5Bridge({
+		instruction: instructions[0],
 		ingredients: [] as (Bread|Ingredient)[]
 	});
 
@@ -45,6 +44,9 @@
 		bridge.state.ingredients.splice(index, 1);
 	}
 
+	function clearIngredients() {
+		bridge.state.ingredients.length = 0;
+	}
 
 	function saveSandwich() {
 		alert('This feature is coming soon!');
@@ -89,7 +91,7 @@
 		<p>Instruction:</p>
 		{#each instructions as instruction, i (i)}
 			<div style="display: flex;">
-				<input type="radio" id="instruction-{instruction}" name="sandwich-instructions" value="{instruction}" bind:group={selected_instruction}>
+				<input type="radio" id="instruction-{instruction}" name="sandwich-instructions" value="{instruction}" bind:group={bridge.state.instruction}>
 				<label for="instruction-{instruction}">{instruction}</label><br>
 			</div>
 		{/each}
@@ -156,7 +158,10 @@
 			<p>Ingredients will appear here as you add them</p>
 		</div>
 	{/if}
-	<button onclick={addIngredient} class="button">Add Ingredient</button>
+	<div>
+		<button onclick={addIngredient} class="button">Add Ingredient</button>
+		<button onclick={clearIngredients} class="button">Clear Ingredients</button>
+	</div>
 	<button onclick={saveSandwich} class="button">Save to Community Lunchbox</button>
 </div>
 

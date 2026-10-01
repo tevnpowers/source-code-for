@@ -7,7 +7,7 @@
 	interface Props {
 		width: number;
 		height: number;
-		bridge: { state: { ingredients: (Bread | Ingredient)[]; };  };
+		bridge: { state: { instruction: string; ingredients: (Bread | Ingredient)[]; };  };
 	}
 
 	let { width, height, bridge }: Props = $props();
@@ -17,6 +17,7 @@
 			p.createCanvas(width, height);
 			// p.colorMode(p.HSB, 360, 100, 100, 1);
 			p.background(255);
+			p.frameRate(24);
 			// p.noLoop();
 		};
 
@@ -45,7 +46,13 @@
 
 		function drawShape(index: number, y: number, layerHeight: number, color: string, type: string) {
 			// Color
-			gradient(0, y, 0, y + layerHeight * 2, p.color(color), p.color(0,0,0));
+			if (bridge.state.instruction == "toasted") {
+				gradient(0, y, 0, y + layerHeight * 2, p.color(color), p.color(0,0,0));
+			} else if (bridge.state.instruction == "grilled") {
+				gradient(0, y, 0, y + layerHeight * 1.25, p.color(color), p.color(0,0,0));
+			} else {
+				p.fill(color);
+			}
 
 			// Start drawing the shape.
 			p.beginShape();
@@ -89,6 +96,11 @@
 		
 			// Stop drawing the shape.
 			p.endShape(p.CLOSE);
+
+			if (bridge.state.instruction == "cold") {
+				p.fill(p.color(0,0,255, 20));
+				p.rect(0, 0, width, height);
+			}
 		}
 
 		// spread curve
