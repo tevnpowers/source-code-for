@@ -1,15 +1,15 @@
 export class Sandwich {
 	name: string;
-	cook_method: string;
+	action: string;
 	ingredients: ( Bread | Ingredient)[];
 
-	constructor(name: string, method: string) {
+	constructor(name: string, action: string) {
 		// The name of this sandwich
 		this.name = name;
 
-		// Method for cooking and serving the sandwich after building sandwich
+		// Action for cooking and serving the sandwich after preparing.
 		// e.g. serve room temp, hot, cold, panini pressed, grilled, toasted?
-		this.cook_method = method;
+		this.action = action;
 
 		// The list of ingredients (in order from bottom to top)
 		// Starts empty, we add ingredients later.

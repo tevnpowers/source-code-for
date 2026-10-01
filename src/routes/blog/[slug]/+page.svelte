@@ -3,9 +3,13 @@
 	import hero  from '$lib/assets/images/peanut-butter-grape-jelly.png';
 	import sandwich_snippet_dark from '$lib/assets/images/the-perfect-sandwich/sandwich-snippet-light.png';
 	import bread_ingredient_snippet_dark from '$lib/assets/images/the-perfect-sandwich/bread-ingredient-snippet-light.png';
-	import SandwichSketch from '$lib/components/sketches/Sandwich.svelte';
-	import { Sandwich, Bread, Ingredient } from '$lib/components/sketches/sandwich';
+	import type { PageProps } from './$types';
+	import { transport } from '../../../hooks';
+	import CreateSandwich from '$lib/components/sketches/CreateSandwich.svelte';
 
+	let { data }: PageProps = $props();
+
+	/*
 	// Peanut Butter and Jelly (grape)
 	let pbj = new Sandwich('peanut butter and jelly', 'room temp');
 
@@ -49,6 +53,7 @@
 	chicken_club.addIngredient(cheddar);
 	chicken_club.addIngredient(bacon);
 	chicken_club.addBread(pretzel_bun);
+	*/
 </script>
 
 <article>
@@ -90,6 +95,8 @@
 		<figcaption>code snippet of Bread and Ingredient classes in Javascript</figcaption>
 	</figure>
 	<p>To learn more about object-oriented programming, I recommend Daniel Shiffman’s <a href="https://thecodingtrain.com/tracks/code-programming-with-p5-js/code/6-objects/1-intro" target="_blank" rel="noopener noreferrer">Object-Oriented Programming with ES6</a> tutorial and his series <a href="https://thecodingtrain.com/" target="_blank" rel="noopener noreferrer">The Coding Train</a> for coding with Processing in general.</p>
+	<p>Check out the p5.js <a href="https://editor.p5js.org/tevn/sketches/AEBj9aBa3" target="_blank" rel="noopener noreferrer">web editor</a> for the full source code for this blog entry.</p>
+	<!--
 	<figure class="sketch-container">
 		<div class="sandwich-container">
 			<SandwichSketch sandwich={pbj} width={600} height={600}/>
@@ -103,7 +110,17 @@
 		</div>
 		<figcaption>Chicken Club (2026) by Tev'n Powers</figcaption>
 	</figure>
+	-->
+	<CreateSandwich
+		breads={data.breads.map(b => transport.Bread.decode(b))}
+		meats={data.meats.map(m => transport.Ingredient.decode(m))}
+		produce={data.produce.map(p => transport.Ingredient.decode(p))}
+		cheeses={data.cheeses.map(c => transport.Ingredient.decode(c))}
+		condiments={data.condiments.map(c => transport.Ingredient.decode(c))}
+		spreads={data.spreads.map(s => transport.Ingredient.decode(s))}
+	/>
 
+	<!--
 	<div class="sketch-gallery">
 		<div class="placeholder"></div>
 		<div class="placeholder"></div>
@@ -112,6 +129,7 @@
 		<div class="placeholder"></div>
 		<div class="placeholder"></div>
 	</div>
+	-->
 </article>
 
 <style>
