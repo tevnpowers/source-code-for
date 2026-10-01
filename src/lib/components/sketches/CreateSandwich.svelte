@@ -48,6 +48,22 @@
 		bridge.state.ingredients.length = 0;
 	}
 
+	function shiftUp(index: number) {
+		if (index < bridge.state.ingredients.length - 1) {
+			let temp = bridge.state.ingredients[index + 1];
+			bridge.state.ingredients[index + 1] = bridge.state.ingredients[index];
+			bridge.state.ingredients[index] = temp;
+		}
+	}
+
+	function shiftDown(index: number) {
+		if (index > 0) {
+			let temp = bridge.state.ingredients[index - 1];
+			bridge.state.ingredients[index - 1] = bridge.state.ingredients[index];
+			bridge.state.ingredients[index] = temp;
+		}
+	}
+
 	function saveSandwich() {
 		alert('This feature is coming soon!');
 	}
@@ -140,10 +156,10 @@
 								{/each}
 							</optgroup>
 						</select>
-						<button class="shift-button" aria-label="Move ingredient up in order">
+						<button onclick={() => shiftUp(index)} class="shift-button" aria-label="Move ingredient up in order">
 							<UpArrowIcon width={20} height={20} />
 						</button>
-						<button class="shift-button" aria-label="Move ingredient down in order">
+						<button onclick={() => shiftDown(index)} class="shift-button" aria-label="Move ingredient down in order">
 							<DownArrowIcon width={20} height={20} />
 						</button>
 						<button class="remove-button" onclick={() => removeIngredient(index)} aria-label="Remove">
