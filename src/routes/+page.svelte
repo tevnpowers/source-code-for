@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import ArrowIcon from "$lib/icons/ArrowIcon.svelte";
+
+	let route = $state(resolve("/blog/the-perfect-sandwich"));
 </script>
 
 <div class="container">
 	<div class="content">
 		<label for="blog-select">Source code for</label>
-		<select name="blog-entries" id="blog-select">
-			<option value="a-blog">a blog</option>
-			<option value="a-feeling">a feeling</option>
-			<option value="the-perfect-sandwich">the perfect sandwich</option>
+		<select name="blog-entries" id="blog-select" bind:value={route}>
+			<option value={resolve("/blog/the-perfect-sandwich")}>the perfect sandwich</option>
 		</select>
-		<a href={resolve('/')} class="button" aria-label="go to ___" title="go to ___">
+		<a href={route} class="button" aria-label="go to ___" title="go to ___">
 			<ArrowIcon width={48} height={48}/>
 		</a>
 	</div>

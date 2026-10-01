@@ -10,19 +10,20 @@
 
 	let lightTheme = $state(false);
 
+	/*
 	onMount(() => {
 		const html = document.querySelector('html');
 		if (html) {
 			console.log('Initial value: ', html.style.getPropertyValue("color-scheme"));
 		}
 	});
+	*/
 
 	$effect(() => {
 		const html = document.querySelector('html');
 
 		if (html) {
 			html.style.setProperty("color-scheme", lightTheme ? "light" : "dark");
-			console.log('Current value: ', html.style.getPropertyValue("color-scheme"));
 		}
 	});
 </script>
@@ -43,8 +44,10 @@
 		<!-- Navigation menu -->
 		<nav>
 			<a href={resolve('/')}>Home</a>
+			<!--
 			<a href={resolve('/author')}>Users</a>
 			<a href={resolve('/blog')}>Blog</a>
+			-->
 		</nav>
 
 		<!-- Dark/light mode switch -->
