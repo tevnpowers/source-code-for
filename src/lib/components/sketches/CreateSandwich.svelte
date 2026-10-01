@@ -28,7 +28,7 @@
 	let name = $state('');
 	let description = $state('');
 	let flavor = $state(5);
-	let health = $state(5);
+	let nutrition = $state(5);
 	let nostalgia = $state(5);
 
 	const bridge = createP5Bridge({
@@ -91,9 +91,9 @@
 		</div>
 
 		<div class="score-controls">
-			<label for="health-score">Health:</label>
-			<span>{health}</span>
-			<input id="health-score" type="range" min="1" max="10" bind:value={health}>
+			<label for="nutrition-score">Nutrition:</label>
+			<span>{nutrition}</span>
+			<input id="nutrition-score" type="range" min="1" max="10" bind:value={nutrition}>
 		</div>
 		
 		<div class="score-controls">

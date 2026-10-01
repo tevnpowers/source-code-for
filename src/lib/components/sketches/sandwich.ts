@@ -1,12 +1,12 @@
 export class Sandwich {
 	name: string;
 	flavor: number;
-	health: number;
+	nutrition: number;
 	nostalgia: number;
 	instruction: string;
 	ingredients: ( Bread | Ingredient)[];
 
-	constructor(name: string, flavor: number, health: number, nostalgia: number, instruction: string) {
+	constructor(name: string, flavor: number, nutrition: number, nostalgia: number, instruction: string) {
 		// The name of this sandwich
 		this.name = name;
 
@@ -16,7 +16,7 @@ export class Sandwich {
 
 		// Various scores in the range [1, 10]
 		this.flavor = flavor;
-		this.health = health;
+		this.nutrition = nutrition;
 		this.nostalgia = nostalgia;
 
 		// The list of ingredients (in order from bottom to top)
