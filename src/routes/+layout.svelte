@@ -34,10 +34,6 @@
 		<!-- Navigation menu -->
 		<nav>
 			<a href={resolve('/')}>Home</a>
-			<!--
-			<a href={resolve('/author')}>Users</a>
-			<a href={resolve('/blog')}>Blog</a>
-			-->
 		</nav>
 
 		<!-- Dark/light mode switch -->
@@ -63,12 +59,14 @@
 			<div class="newsletter-container">
 				<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
 			</div>
-			<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
-				<GitHubLogo height={32} width={32} />
-			</a>
-			<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
-				<MailIcon height={36} width={36} />
-			</a>
+			<div class="social-container">
+				<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
+					<GitHubLogo height={32} width={32} />
+				</a>
+				<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
+					<MailIcon height={36} width={36} />
+				</a>
+			</div>
 		</div>
 	</footer>
 </div>
@@ -76,7 +74,7 @@
 <style>
 	.app {
 		margin: 0;
-		padding: 0 15%;
+		padding: 0 8%;
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
@@ -96,17 +94,30 @@
 
 	header, footer {
 		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
+		align-items: start;
 		width: 100%;
 	}
 
 	header {
 		margin-top: 4%;
+		flex-direction: row;
+		justify-content: space-between;
 		font-family: 'JetBrains Mono Semibold';
 	}
-	
+
+	footer {
+		margin: 8% 0;
+		padding: 0;
+		height: fit-content;
+
+		flex-direction: column;
+		justify-content: center;
+		gap: 12px;
+
+		color: var(--text-secondary);
+		font-family: 'JetBrains Mono Medium';
+	}
+
 	nav {
 		display: flex;
 		flex-direction: row;
@@ -195,33 +206,30 @@
 		border-radius: 50%;
 	}
 
-	footer {
-		margin: 4% 0;
-		padding: 0;
-		height: fit-content;
-
-		color: var(--text-secondary);
-		font-family: 'JetBrains Mono Medium';
-	}
-
 	.path {
 		font-size: 22px;
 	}
 
 	.contact-container {
 		display: flex;
-		flex-direction: row;
-		align-items: center;
+		flex-direction: column-reverse;
+		align-items: start;
 		justify-content: flex-end;
 		gap: 12px;
 	}
 
 	.newsletter-container {
-		min-width: 400px;
+		min-width: 350px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-end;
+	}
+
+	.social-container {
+		display: flex;
+		flex-direction: row;
+		gap: 12px;
 	}
 
 	a.button {
@@ -242,12 +250,33 @@
 
 	/* Medium devices (landscape tablets, 768px and up) */
 	@media only screen and (min-width: 768px) {
+		footer {
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 12px;
+			margin: 4% 0;
+		}
 
+		.contact-container {
+			flex-direction: row;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 12px;
+		}
 	}
 
 	/* Large devices (laptops/desktops, 992px and up) */
 	@media only screen and (min-width: 992px) {
+		.app {
+			padding: 0 15%;
+		}
 
+		header, footer {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+		}
 	}
 
 	/* Extra large devices (large laptops and desktops, 1200px and up) */

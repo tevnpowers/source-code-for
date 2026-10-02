@@ -71,8 +71,12 @@
 
 <div class="container">
 	<h2>Your Perfect Sandwich:</h2>
-	<SandwichSketch bridge={bridge} height={600} width={600}/>
-
+	<div class="sketch-sm">
+		<SandwichSketch bridge={bridge} height={360} width={360}/>
+	</div>
+	<div class="sketch-lg">
+		<SandwichSketch bridge={bridge} height={600} width={600}/>
+	</div>
 	<div class="name-group">
 		<label for="sandwich-name">Sandwich Name:</label>
 		<input type="text" id="sandwich-name" name="sandwich-name" bind:value={name}>
@@ -200,6 +204,14 @@
 		line-height: 115%;
 	}
 
+	.sketch-sm {
+		display: block;
+	}
+
+	.sketch-lg {
+		display: none;
+	}
+
 	.name-group, .description-group {
 		display: flex;
 		flex-direction: row;
@@ -281,5 +293,36 @@
 		font: inherit;
 		cursor: pointer;
 		outline: inherit;
+	}
+
+	/* Extra small devices (phones, 600px and down) */
+	@media only screen and (max-width: 600px) {
+
+	}
+
+	/* Small devices (portrait tablets and large phones, 600px and up) */
+	@media only screen and (min-width: 600px) {
+		.sketch-sm {
+			display: none;
+		}
+
+		.sketch-lg {
+			display: block;
+		}
+	}
+
+	/* Medium devices (landscape tablets, 768px and up) */
+	@media only screen and (min-width: 768px) {
+
+	}
+
+	/* Large devices (laptops/desktops, 992px and up) */
+	@media only screen and (min-width: 992px) {
+
+	}
+
+	/* Extra large devices (large laptops and desktops, 1200px and up) */
+	@media only screen and (min-width: 1200px) {
+		
 	}
 </style>

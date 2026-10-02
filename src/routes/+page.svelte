@@ -25,10 +25,10 @@
 	.content {
 		margin-top: 200px;
 		display: flex;
-		flex-direction: row;
-		align-items: center;
+		flex-direction: column;
+		align-items: start;
 		justify-content: start;
-		gap: 24px;
+		gap: 12px;
 	}
 
 	label, select {
@@ -38,12 +38,12 @@
 	}
 
 	label {
-		font-size: 30px;
+		font-size: 28px;
 		color: var(--text-primary);
 	}
 
 	select {
-		font-size: 28px;
+		font-size: 22px;
 		color: var(--text-secondary);
 		background-color: transparent;
 		border: 2px solid var(--background-reverse);
@@ -55,5 +55,40 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	/* Extra small devices (phones, 600px and down) */
+	@media only screen and (max-width: 600px) {
+
+	}
+
+	/* Small devices (portrait tablets and large phones, 600px and up) */
+	@media only screen and (min-width: 600px) {
+
+	}
+
+	/* Medium devices (landscape tablets, 768px and up) */
+	@media only screen and (min-width: 768px) {
+		label {
+			font-size: 30px;
+		}
+
+		.content {
+			flex-direction: row;
+			align-items: center;
+			gap: 24px;
+		}
+	}
+
+	/* Large devices (laptops/desktops, 992px and up) */
+	@media only screen and (min-width: 992px) {
+		select {
+			font-size: 28px;
+		}
+	}
+
+	/* Extra large devices (large laptops and desktops, 1200px and up) */
+	@media only screen and (min-width: 1200px) {
+
 	}
 </style>

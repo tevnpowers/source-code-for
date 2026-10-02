@@ -64,7 +64,7 @@
 	<figure class="hero-img">
 		<img src={hero} alt="hero">
 		<!-- <P5Sketch /> -->
-		<figcaption>Peanut Butter & Jelly (2026) by Tev'n Powers</figcaption>
+		<figcaption>Peanut Butter & Jelly (v0) by Tev'n Powers</figcaption>
 	</figure>
 	<p>If you can make a sandwich, you can write software. Many people assume that a strong math or quantitative skillset is required to write code or be a computer programmer. But I really do believe if you can instruct someone in making a sandwich you can write a computer program.</p>
 	<p>You may be familiar with the classroom exercise where a teacher asks one or more students to provide instructions to make a peanut butter and jelly sandwich. Naturally the instructions will be somewhat vague, with the student assuming the teacher’s common sense will fill in the gaps. However, the goal of this exercise is to teach the importance of precision and specificity.</p>
@@ -85,13 +85,11 @@
 	<p>Our sandwich consists of a combination of these ingredients, added in layers. To organize the bundle of ingredients that make up our sandwiches, we will define a Processing class. Think of a class as a blueprint or template that can be customized or configured. From the sandwich class, we can create any number of objects that represent specific sandwiches. An object is a specific instance of a class with specific data properties and functionality.</p>
 	<figure class="snippet-img">
 		<img src={sandwich_snippet_dark} alt="code snippet of a Sandwich class in the Processing programming language">
-		<!-- <P5Sketch /> -->
 		<figcaption>code snippet of a sandwich class in Javascript</figcaption>
 	</figure>
 	<p>For instance, let’s say our class defines a sandwich as having at least one piece of bread and one or more additional ingredients (e.g. meats, vegetables, spreads, and condiments). From this class, we could create one object that represents a peanut butter and jelly sandwich and another object that represents a cheeseburger with lettuce, tomato, and onions.</p>
 	<figure class="snippet-img">
 		<img src={bread_ingredient_snippet_dark} alt="code snippet of Bread and Ingredient classes in the Processing programming language">
-		<!-- <P5Sketch /> -->
 		<figcaption>code snippet of Bread and Ingredient classes in Javascript</figcaption>
 	</figure>
 	<p>To learn more about object-oriented programming, I recommend Daniel Shiffman’s <a href="https://thecodingtrain.com/tracks/code-programming-with-p5-js/code/6-objects/1-intro" target="_blank" rel="noopener noreferrer">Object-Oriented Programming with ES6</a> tutorial and his series <a href="https://thecodingtrain.com/" target="_blank" rel="noopener noreferrer">The Coding Train</a> for coding with Processing in general.</p>
@@ -135,7 +133,7 @@
 
 <style>
 	article {
-		width: 60%;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -174,8 +172,12 @@
 		color: var(--text-primary);
 	}
 
-	.hero-img, .snippet-img {
+	.hero-img {
 		width: 75%;
+	}
+
+	.snippet-img {
+		width: 100%;
 	}
 
 	.snippet-img img {
@@ -210,5 +212,38 @@
 	.placeholder {
 		height: 250px;
 		border: 2px solid var(--text-secondary);
+	}
+
+	/* Extra small devices (phones, 600px and down) */
+	@media only screen and (max-width: 600px) {
+
+	}
+
+	/* Small devices (portrait tablets and large phones, 600px and up) */
+	@media only screen and (min-width: 600px) {
+
+	}
+
+	/* Medium devices (landscape tablets, 768px and up) */
+	@media only screen and (min-width: 768px) {
+		.snippet-img {
+			width: 85%;
+		}
+	}
+
+	/* Large devices (laptops/desktops, 992px and up) */
+	@media only screen and (min-width: 992px) {
+
+	}
+
+	/* Extra large devices (large laptops and desktops, 1200px and up) */
+	@media only screen and (min-width: 1200px) {
+		article {
+			width: 60%;
+		}
+
+		.snippet-img {
+			width: 75%;
+		}
 	}
 </style>
