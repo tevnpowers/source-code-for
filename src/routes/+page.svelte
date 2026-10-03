@@ -2,14 +2,14 @@
 	import { resolve } from "$app/paths";
 	import ArrowIcon from "$lib/icons/ArrowIcon.svelte";
 
-	let route = $state(resolve("/blog/the-perfect-sandwich"));
+	let route = $state(resolve("/the-perfect-sandwich"));
 </script>
 
 <div class="container">
 	<div class="content">
 		<label for="blog-select">Source code for</label>
 		<select name="blog-entries" id="blog-select" bind:value={route}>
-			<option value={resolve("/blog/the-perfect-sandwich")}>the perfect sandwich</option>
+			<option value={resolve("/the-perfect-sandwich")}>the perfect sandwich</option>
 		</select>
 		<a href={route} class="button" aria-label="go to ___" title="go to ___">
 			<ArrowIcon width={48} height={48}/>

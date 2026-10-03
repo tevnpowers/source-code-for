@@ -1,8 +1,8 @@
-// src/routes/blog/[slug]/+page.server.ts
+// src/routes/the-perfect-sandwich/+page.server.ts
 import { breads } from '$lib/server/sandwich/bread';
 import { meats, seafood, produce, cheeses, condiments, spreads } from '$lib/server/sandwich/ingredients';
 import type { PageServerLoad } from './$types';
-import { transport } from '../../../hooks';
+import { transport } from '../../hooks';
 
 export const load: PageServerLoad = async ({ params }) => {
 

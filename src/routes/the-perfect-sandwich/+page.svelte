@@ -1,10 +1,10 @@
-<!-- src/routes/blog/[slug]/+page.svelte -->
+<!-- src/routes/the-perfect-sandwich/+page.svelte -->
 <script lang="ts">
 	import hero  from '$lib/assets/images/peanut-butter-grape-jelly.png';
 	import sandwich_snippet_dark from '$lib/assets/images/the-perfect-sandwich/sandwich-snippet-light.png';
 	import bread_ingredient_snippet_dark from '$lib/assets/images/the-perfect-sandwich/bread-ingredient-snippet-light.png';
 	import type { PageProps } from './$types';
-	import { transport } from '../../../hooks';
+	import { transport } from '../../hooks';
 	import CreateSandwich from '$lib/components/sketches/CreateSandwich.svelte';
 
 	let { data }: PageProps = $props();
