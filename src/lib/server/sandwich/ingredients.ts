@@ -62,5 +62,5 @@ export const spreads: Ingredient[] = [
 	new Ingredient('jelly (grape)', 'spread', 3, '#7b039c'),
 	new Ingredient('jelly (strawberry)', 'spread', 3, '#c80003'),
 	new Ingredient('peanut butter (creamy)', 'spread', 2, '#b86b1f'),
-	new Ingredient('peanut butter (crunch)', 'spread', 2, '#794612')
+	new Ingredient('peanut butter (crunchy)', 'spread', 2, '#794612')
 ]
