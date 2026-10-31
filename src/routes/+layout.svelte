@@ -52,7 +52,26 @@
 	 </main>
 
 	<!-- Footer appears on every route -->
-	<footer>
+	<footer class="footer-sm">
+		<!-- TODO: Dynamically generate path -->
+		<div class="contact-container">
+			<div class="path">/home</div>
+			<div class="social-container">
+				<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
+					<GitHubLogo height={24} width={24} />
+				</a>
+				<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
+					<MailIcon height={28} width={28} />
+				</a>
+			</div>
+		</div>
+		<div class="newsletter-container">
+			<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
+		</div>
+	</footer>
+
+	<!-- Footer appears on every route -->
+	<footer class="footer-lg">
 		<!-- TODO: Dynamically generate path -->
 		<div class="path">/home</div>
 		<div class="contact-container">
@@ -92,27 +111,42 @@
 		justify-content: center;
 	}
 
-	header, footer {
-		display: flex;
-		align-items: start;
-		width: 100%;
+	footer {
+		overflow: hidden;
 	}
 
 	header {
+		width: 100%;
 		margin-top: 4%;
+		
+		display: flex;
+		align-items: start;
 		flex-direction: row;
 		justify-content: space-between;
 		font-family: 'JetBrains Mono Semibold';
 	}
 
-	footer {
+	.footer-sm {
+		width: 100%;
 		margin: 8% 0;
 		padding: 0;
 		height: fit-content;
 
+		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		justify-content: center;
 		gap: 12px;
+
+		color: var(--text-secondary);
+		font-family: 'JetBrains Mono Medium';
+	}
+
+	.footer-lg {
+		width: 100%;
+		margin: 8% 0;
+		padding: 0;
+		display: none;
 
 		color: var(--text-secondary);
 		font-family: 'JetBrains Mono Medium';
@@ -129,6 +163,7 @@
 		color: var(--text-primary);
 		text-decoration: none;
 		text-transform: lowercase;
+		cursor: pointer;
 	}
 
 	.label-text {
@@ -207,19 +242,21 @@
 	}
 
 	.path {
-		font-size: 22px;
+		font-size: 18px;
 	}
 
 	.contact-container {
+		width: 100%;
 		display: flex;
-		flex-direction: column-reverse;
-		align-items: start;
-		justify-content: flex-end;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
 		gap: 12px;
 	}
 
 	.newsletter-container {
-		min-width: 350px;
+		max-height: 36px;
+		min-width: 325px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -250,18 +287,33 @@
 
 	/* Medium devices (landscape tablets, 768px and up) */
 	@media only screen and (min-width: 768px) {
-		footer {
+		.footer-sm {
+			display: none;
+		}
+
+		.footer-lg {
+			display: flex;
 			flex-direction: row;
+			align-items: flex-end;
 			justify-content: space-between;
 			gap: 12px;
 			margin: 4% 0;
 		}
 
 		.contact-container {
+			width: fit-content;
 			flex-direction: row;
 			align-items: center;
 			justify-content: flex-end;
 			gap: 12px;
+		}
+
+		.path {
+			font-size: 22px;
+		}
+
+		.newsletter-container {
+			min-width: 350px;
 		}
 	}
 
@@ -271,11 +323,19 @@
 			padding: 0 15%;
 		}
 
-		header, footer {
+		header {
 			flex-direction: row;
 			align-items: center;
 			justify-content: space-between;
 			width: 100%;
+		}
+
+		nav a {
+			font-size: 28px;
+		}
+
+		.path {
+			font-size: 24px;
 		}
 	}
 

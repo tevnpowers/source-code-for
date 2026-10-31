@@ -1,19 +1,93 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
-	import ArrowIcon from "$lib/icons/ArrowIcon.svelte";
+	import type { ResolvedPathname } from "$app/types";
+	import { onMount } from "svelte";
 
-	let route = $state(resolve("/the-perfect-sandwich"));
+	interface RouteOption {
+		label: string;
+		route: ResolvedPathname;
+	}
+
+	let options: RouteOption[] = [
+		{ label: 'a blog', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a feeling', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a crush', route: resolve("/the-perfect-sandwich")},
+		{ label: 'the perfect sandwich', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a garden', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a classic album', route: resolve("/the-perfect-sandwich")},
+		{ label: 'encryption', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a library', route: resolve("/the-perfect-sandwich")},
+		{ label: 'character', route: resolve("/the-perfect-sandwich")},
+	]
+
+	let mounted = false;
+
+	onMount(() => {
+		mounted = true;
+	});
+
+	function typewriter(text: string) {
+		let textNode: HTMLElement | null = document.getElementById('blog-entry');
+		
+		if (textNode) {
+			let i = 1;
+			let backspace = false;
+			typeText();
+
+			function typeText() {
+				if (textNode) {
+					if (!backspace && i <= text.length) {
+						textNode.textContent = text.slice(0, i);
+						i++;
+						setTimeout(typeText, characterInterval);
+					} else if (!backspace && i > text.length) {
+						backspace = true;
+						setTimeout(typeText, backspacePause);
+					} else if (backspace && i > 0) {
+						textNode.textContent = text.slice(0, i);
+						i--;
+						setTimeout(typeText, characterInterval);
+					} else if (i == 0) {
+						// zero-width space
+						// https://unicode-explorer.com/c/200B
+						textNode.textContent = '​';
+					}
+				}
+			}
+		}
+	}
+
+
+	const characterInterval = 75;
+	const backspacePause = 2500;
+
+	let currentEntry = $state(0);
+	let interval = $state(0);
+
+	$effect(() => {
+		const id = setInterval(() => {
+			if (mounted && document.visibilityState == 'visible') {
+				typewriter(options[currentEntry].label);
+				interval = backspacePause + (characterInterval * 3) * (options[currentEntry].label.length + 1);
+				currentEntry = (currentEntry + 1) % options.length;
+			}
+		}, interval);
+
+		return () => {
+			clearInterval(id);
+		};
+	});
 </script>
 
 <div class="container">
 	<div class="content">
-		<label for="blog-select">Source code for</label>
-		<select name="blog-entries" id="blog-select" bind:value={route}>
-			<option value={resolve("/the-perfect-sandwich")}>the perfect sandwich</option>
-		</select>
-		<a href={route} class="button" aria-label="go to ___" title="go to ___">
-			<ArrowIcon width={48} height={48}/>
-		</a>
+		<div class="typewriter">
+			<span class="prefix">Source code for</span><span class="blog-title" id="blog-entry">&ZeroWidthSpace;</span><span class="period">.</span>
+		</div>
+		<div>
+			<span class="suffix-sm">coming soon</span>
+			<span class="suffix-lg">coming soon.</span>
+		</div>
 	</div>
 </div>
 
@@ -23,7 +97,7 @@
 	}
 
 	.content {
-		margin-top: 200px;
+		margin-top: 150px;
 		display: flex;
 		flex-direction: column;
 		align-items: start;
@@ -31,30 +105,31 @@
 		gap: 12px;
 	}
 
-	label, select {
-		font-family: 'JetBrains Mono Regular';
-		font-weight: normal;
-		text-transform: lowercase;
+	.typewriter {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		gap: 12px;
 	}
 
-	label {
+	.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
+		font-family: 'JetBrains Mono Regular';
+		font-weight: normal;
 		font-size: 28px;
+		text-transform: lowercase;
+		text-wrap: wrap;
 		color: var(--text-primary);
 	}
 
-	select {
-		font-size: 22px;
-		color: var(--text-secondary);
-		background-color: transparent;
-		border: 2px solid var(--background-reverse);
-		padding: 2px 8px;
-		border-radius: 8px;
+	.suffix-lg, .period {
+		display: none;
 	}
 
-	a.button {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+	.blog-title {
+		color: var(--text-secondary);
+		margin-right: -12px;
+		font-family: 'JetBrains Mono Bold';
+		display: block;
 	}
 
 	/* Extra small devices (phones, 600px and down) */
@@ -69,26 +144,35 @@
 
 	/* Medium devices (landscape tablets, 768px and up) */
 	@media only screen and (min-width: 768px) {
-		label {
-			font-size: 30px;
-		}
-
-		.content {
-			flex-direction: row;
-			align-items: center;
-			gap: 24px;
+		.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
+			font-size: 40px;
 		}
 	}
 
 	/* Large devices (laptops/desktops, 992px and up) */
 	@media only screen and (min-width: 992px) {
-		select {
-			font-size: 28px;
+		.content {
+			flex-direction: column;
+			margin-top: 200px;
+		}
+
+		.typewriter {
+			flex-direction: row;
+		}
+
+		.suffix-sm {
+			display: none;
+		}
+
+		.suffix-lg, .period {
+			display: block;
 		}
 	}
 
 	/* Extra large devices (large laptops and desktops, 1200px and up) */
 	@media only screen and (min-width: 1200px) {
-
+		.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
+			font-size: 48px;
+		}
 	}
 </style>
