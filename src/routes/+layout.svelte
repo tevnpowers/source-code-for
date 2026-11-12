@@ -4,16 +4,38 @@
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import GitHubLogo from '$lib/icons/GitHubLogo.svelte';
 	import '../styles/fonts.css'
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 
-	let lightTheme = $state(false);
+	const LIGHT_THEME_TEXT = 'light';
+	const DARK_THEME_TEXT = 'dark';
+
+	const LOCAL_STORAGE_THEME_KEY = 'scf_blog::theme';
+
+	onMount(() => {
+		lightTheme = getInitialLightTheme();
+	});
+
+	function getInitialLightTheme(): boolean {
+		return !document.documentElement.classList.contains(DARK_THEME_TEXT);
+	}
+
+	function getThemeText(light: boolean): string {
+		return light ? LIGHT_THEME_TEXT : DARK_THEME_TEXT; 
+	}
+
+	let lightTheme = $state(true);
 
 	$effect(() => {
 		const html = document.querySelector('html');
 
 		if (html) {
-			html.style.setProperty("color-scheme", lightTheme ? "light" : "dark");
+			let theme_text = getThemeText(lightTheme);
+			// html.style.setProperty("color-scheme", theme_text);
+			document.documentElement.classList.remove(LIGHT_THEME_TEXT, DARK_THEME_TEXT);
+			document.documentElement.classList.add(theme_text);
+			localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme_text);
 		}
 	});
 </script>
@@ -26,9 +48,27 @@
 	<meta property="og:image:alt" content="Source Code For icon"/>
 	<meta name="description" content="Technically a technical blog">
 	<title>Source Code For</title>
+	<script lang="ts">
+		console.log('hello layout head');
+		const theme = localStorage.getItem('scf_blog::theme') || '';
+		console.log('theme: ', theme);
+
+		if (theme == 'light' || theme == 'dark') {
+			document.documentElement.classList.add(theme);
+		}
+	</script>
+	<style>
+		.light body {
+			color-scheme: light;
+		}
+
+		.dark body {
+			color-scheme: dark;
+		}
+	</style>
 </svelte:head>
 
-<div class="app dark-mode">
+<div class="app">
 	<!-- Header appears on every route -->
 	<header>
 		<!-- Navigation menu -->
