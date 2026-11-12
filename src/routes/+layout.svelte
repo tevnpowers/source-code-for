@@ -4,40 +4,8 @@
 	import MailIcon from '$lib/icons/MailIcon.svelte';
 	import GitHubLogo from '$lib/icons/GitHubLogo.svelte';
 	import '../styles/fonts.css'
-	import { onMount } from 'svelte';
 
 	let { children } = $props();
-
-	const LIGHT_THEME_TEXT = 'light';
-	const DARK_THEME_TEXT = 'dark';
-
-	const LOCAL_STORAGE_THEME_KEY = 'scf_blog::theme';
-
-	onMount(() => {
-		lightTheme = getInitialLightTheme();
-	});
-
-	function getInitialLightTheme(): boolean {
-		return !document.documentElement.classList.contains(DARK_THEME_TEXT);
-	}
-
-	function getThemeText(light: boolean): string {
-		return light ? LIGHT_THEME_TEXT : DARK_THEME_TEXT; 
-	}
-
-	let lightTheme = $state(true);
-
-	$effect(() => {
-		const html = document.querySelector('html');
-
-		if (html) {
-			let theme_text = getThemeText(lightTheme);
-			// html.style.setProperty("color-scheme", theme_text);
-			document.documentElement.classList.remove(LIGHT_THEME_TEXT, DARK_THEME_TEXT);
-			document.documentElement.classList.add(theme_text);
-			localStorage.setItem(LOCAL_STORAGE_THEME_KEY, theme_text);
-		}
-	});
 </script>
 
 <svelte:head>
@@ -48,24 +16,6 @@
 	<meta property="og:image:alt" content="Source Code For icon"/>
 	<meta name="description" content="Technically a technical blog">
 	<title>Source Code For</title>
-	<script lang="ts">
-		console.log('hello layout head');
-		const theme = localStorage.getItem('scf_blog::theme') || '';
-		console.log('theme: ', theme);
-
-		if (theme == 'light' || theme == 'dark') {
-			document.documentElement.classList.add(theme);
-		}
-	</script>
-	<style>
-		.light body {
-			color-scheme: light;
-		}
-
-		.dark body {
-			color-scheme: dark;
-		}
-	</style>
 </svelte:head>
 
 <div class="app">
@@ -73,17 +23,8 @@
 	<header>
 		<!-- Navigation menu -->
 		<nav>
-			<a href={resolve('/')}>Home</a>
+			<a href={resolve('/')}>01. Home</a>
 		</nav>
-
-		<!-- Dark/light mode switch -->
-		<div class="toggle-container">
-			<label class="switch">
-				<input type="checkbox" bind:checked={lightTheme}>
-				<span class="slider round"></span>
-			</label>
-			<span class="label-text">{lightTheme ? "Light" : "Dark"} theme</span>
-		</div>
 	</header>
 
 	<!-- Dynamic content that changers per route -->
@@ -202,84 +143,15 @@
 		font-size: 22px;
 		color: var(--text-primary);
 		text-decoration: none;
-		text-transform: lowercase;
+		text-transform: capitalize;
 		cursor: pointer;
-	}
-
-	.label-text {
-		font-size: 18px;
-		color: var(--text-primary);
-		text-transform: lowercase;
 	}
 
 	nav a:hover {
+		color: var(--text-secondary);
 		text-decoration: underline 2px;
 	}
 
-	/* Theme toggle */
-	.toggle-container {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		gap: 12px;
-	}
-
-	/* The switch - the box around the slider */
-	.switch {
-		position: relative;
-		display: inline-block;
-		width: 48px;
-		height: 28px;
-	}
-
-	/* Hide default HTML checkbox */
-	.switch input {
-		opacity: 0;
-		width: 0;
-		height: 0;
-	}
-
-	/* The slider */
-	.slider {
-		position: absolute;
-		cursor: pointer;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: transparent;
-		border: 2px solid var(--text-primary);
-		-webkit-transition: .4s;
-		transition: .4s;
-	}
-
-	.slider:before {
-		position: absolute;
-		content: "";
-		height: 16px;
-		width: 16px;
-		left: 4px;
-		bottom: 4px;
-		background-color: var(--background-reverse);
-		-webkit-transition: .4s;
-		transition: .4s;
-	}
-
-	input:checked + .slider:before {
-		-webkit-transform: translateX(20px);
-		-ms-transform: translateX(20px);
-		transform: translateX(20px);
-	}
-
-	/* Rounded sliders */
-	.slider.round {
-		border-radius: 34px;
-	}
-
-	.slider.round:before {
-		border-radius: 50%;
-	}
 
 	.path {
 		font-size: 18px;
