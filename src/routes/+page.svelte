@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { resolve } from "$app/paths";
 	import type { ResolvedPathname } from "$app/types";
-	import { onMount } from "svelte";
 
 	interface RouteOption {
 		label: string;
@@ -10,6 +9,7 @@
 
 	let options: RouteOption[] = [
 		{ label: 'a blog', route: resolve("/the-perfect-sandwich")},
+		{ label: 'practice', route: resolve("/the-perfect-sandwich")},
 		{ label: 'a feeling', route: resolve("/the-perfect-sandwich")},
 		{ label: 'a crush', route: resolve("/the-perfect-sandwich")},
 		{ label: 'the perfect sandwich', route: resolve("/the-perfect-sandwich")},
@@ -18,15 +18,8 @@
 		{ label: 'encryption', route: resolve("/the-perfect-sandwich")},
 		{ label: 'a library', route: resolve("/the-perfect-sandwich")},
 		{ label: 'character', route: resolve("/the-perfect-sandwich")},
-	]
-
-	let mounted = false;
-
-	onMount(() => {
-		mounted = true;
-	});
-
-	function typewriter(text: string) {
+	];
+	function typewriter(text: string, onDone: () => void ) {
 		let textNode: HTMLElement | null = document.getElementById('blog-entry');
 		
 		if (textNode) {
@@ -37,46 +30,36 @@
 			function typeText() {
 				if (textNode) {
 					if (!backspace && i <= text.length) {
-						textNode.textContent = text.slice(0, i);
+						textNode.textContent = text.slice(0, i) + '​';
 						i++;
 						setTimeout(typeText, characterInterval);
 					} else if (!backspace && i > text.length) {
 						backspace = true;
 						setTimeout(typeText, backspacePause);
-					} else if (backspace && i > 0) {
-						textNode.textContent = text.slice(0, i);
+					} else if (backspace && i >= 0) {
+						textNode.textContent = text.slice(0, i) + '​';
 						i--;
 						setTimeout(typeText, characterInterval);
-					} else if (i == 0) {
-						// zero-width space
-						// https://unicode-explorer.com/c/200B
-						textNode.textContent = '​';
+					} else {
+						onDone();
 					}
 				}
 			}
 		}
 	}
 
-
-	const characterInterval = 75;
+	const characterInterval = 150;
 	const backspacePause = 2500;
 
 	let currentEntry = $state(0);
-	let interval = $state(0);
-
+	
 	$effect(() => {
-		const id = setInterval(() => {
-			if (mounted && document.visibilityState == 'visible') {
-				typewriter(options[currentEntry].label);
-				interval = backspacePause + (characterInterval * 3) * (options[currentEntry].label.length + 1);
+		typewriter(options[currentEntry].label, () => {
+			setTimeout(() => {
 				currentEntry = (currentEntry + 1) % options.length;
-			}
-		}, interval);
-
-		return () => {
-			clearInterval(id);
-		};
-	});
+			}, 750);
+		})
+	})
 </script>
 
 <div class="container">
