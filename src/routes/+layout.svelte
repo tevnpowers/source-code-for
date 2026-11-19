@@ -39,10 +39,10 @@
 			<div class="path">/home</div>
 			<div class="social-container">
 				<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
-					<GitHubLogo height={24} width={24} />
+					<GitHubLogo height={22} width={22} />
 				</a>
 				<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
-					<MailIcon height={28} width={28} />
+					<MailIcon height={24} width={24} />
 				</a>
 			</div>
 		</div>
@@ -61,10 +61,10 @@
 			</div>
 			<div class="social-container">
 				<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
-					<GitHubLogo height={32} width={32} />
+					<GitHubLogo height={26} width={26} />
 				</a>
 				<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
-					<MailIcon height={36} width={36} />
+					<MailIcon height={30} width={30}/>
 				</a>
 			</div>
 		</div>
@@ -98,7 +98,7 @@
 
 	header {
 		width: 100%;
-		margin-top: 4%;
+		margin-top: 1.5rem;
 		
 		display: flex;
 		align-items: start;
@@ -109,7 +109,7 @@
 
 	.footer-sm {
 		width: 100%;
-		margin: 8% 0;
+		margin: 1.25rem 0;
 		padding: 0;
 		height: fit-content;
 
@@ -117,30 +117,26 @@
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: center;
-		gap: 12px;
+		gap: 0.75em;
 
-		color: var(--text-secondary);
 		font-family: 'JetBrains Mono Medium';
 	}
 
 	.footer-lg {
 		width: 100%;
-		margin: 8% 0;
 		padding: 0;
 		display: none;
 
-		color: var(--text-secondary);
 		font-family: 'JetBrains Mono Medium';
 	}
 
 	nav {
 		display: flex;
 		flex-direction: row;
-		gap: 128px;
 	}
 
 	nav a {
-		font-size: 22px;
+		font-size: 1.35em;
 		color: var(--text-primary);
 		text-decoration: none;
 		text-transform: capitalize;
@@ -154,7 +150,8 @@
 
 
 	.path {
-		font-size: 18px;
+		font-size: 1em;
+		color: var(--text-secondary);
 	}
 
 	.contact-container {
@@ -163,12 +160,11 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-		gap: 12px;
 	}
 
 	.newsletter-container {
-		max-height: 36px;
-		min-width: 325px;
+		max-height: 1.75em;
+		width: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -178,7 +174,7 @@
 	.social-container {
 		display: flex;
 		flex-direction: row;
-		gap: 12px;
+		gap: 0.65em;
 	}
 
 	a.button {
@@ -208,8 +204,7 @@
 			flex-direction: row;
 			align-items: flex-end;
 			justify-content: space-between;
-			gap: 12px;
-			margin: 4% 0;
+			margin: 1.5rem 0;
 		}
 
 		.contact-container {
@@ -217,15 +212,15 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: flex-end;
-			gap: 12px;
+			gap: 0.75em;
 		}
 
 		.path {
-			font-size: 22px;
+			font-size: 1.2em;
 		}
 
 		.newsletter-container {
-			min-width: 350px;
+			min-width: 24em;
 		}
 	}
 
@@ -242,12 +237,8 @@
 			width: 100%;
 		}
 
-		nav a {
-			font-size: 28px;
-		}
-
-		.path {
-			font-size: 24px;
+		nav a, .path {
+			font-size: 1.35em;
 		}
 	}
 

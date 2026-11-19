@@ -8,16 +8,16 @@
 	}
 
 	let options: RouteOption[] = [
-		{ label: 'a blog', route: resolve("/the-perfect-sandwich")},
-		{ label: 'practice', route: resolve("/the-perfect-sandwich")},
-		{ label: 'a feeling', route: resolve("/the-perfect-sandwich")},
-		{ label: 'a crush', route: resolve("/the-perfect-sandwich")},
-		{ label: 'the perfect sandwich', route: resolve("/the-perfect-sandwich")},
-		{ label: 'a garden', route: resolve("/the-perfect-sandwich")},
-		{ label: 'a classic album', route: resolve("/the-perfect-sandwich")},
-		{ label: 'encryption', route: resolve("/the-perfect-sandwich")},
-		{ label: 'a library', route: resolve("/the-perfect-sandwich")},
-		{ label: 'character', route: resolve("/the-perfect-sandwich")},
+		{ label: 'a blog', route: resolve("/")},
+		{ label: 'practice', route: resolve("/")},
+		{ label: 'a crush', route: resolve("/")},
+		{ label: 'a classic album', route: resolve("/")},
+		{ label: 'the perfect sandwich', route: resolve("/")},
+		{ label: 'a garden', route: resolve("/")},
+		{ label: 'character', route: resolve("/")},
+		{ label: 'a feeling', route: resolve("/")},
+		{ label: 'encryption', route: resolve("/")},
+		{ label: 'a library', route: resolve("/")},
 	];
 	function typewriter(text: string, onDone: () => void ) {
 		let textNode: HTMLElement | null = document.getElementById('blog-entry');
@@ -80,25 +80,27 @@
 	}
 
 	.content {
-		margin-top: 150px;
+		margin-top: 9rem;
 		display: flex;
 		flex-direction: column;
 		align-items: start;
 		justify-content: start;
-		gap: 12px;
 	}
 
 	.typewriter {
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
-		gap: 12px;
+	}
+
+	.content, .typewriter {
+		gap: 0.75em;
 	}
 
 	.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
 		font-family: 'JetBrains Mono Regular';
 		font-weight: normal;
-		font-size: 28px;
+		font-size: 1.75em;
 		text-transform: lowercase;
 		text-wrap: wrap;
 		color: var(--text-primary);
@@ -128,7 +130,7 @@
 	/* Medium devices (landscape tablets, 768px and up) */
 	@media only screen and (min-width: 768px) {
 		.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
-			font-size: 40px;
+			font-size: 2.5em;
 		}
 	}
 
@@ -136,7 +138,7 @@
 	@media only screen and (min-width: 992px) {
 		.content {
 			flex-direction: column;
-			margin-top: 200px;
+			margin-top: 12.5rem;
 		}
 
 		.typewriter {
@@ -155,7 +157,7 @@
 	/* Extra large devices (large laptops and desktops, 1200px and up) */
 	@media only screen and (min-width: 1200px) {
 		.prefix, .blog-title, .suffix-sm, .suffix-lg, .period {
-			font-size: 48px;
+			font-size: 3em;
 		}
 	}
 </style>
