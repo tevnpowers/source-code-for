@@ -33,7 +33,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 24px;
+		gap: 1.5em;
 	}
 
 	h1, h2 {
@@ -46,12 +46,12 @@
 
 	h1 {
 		font-family: 'JetBrains Mono Bold';
-		font-size: 36px;
+		font-size: 2.25em;
 	}
 
 	h2 {
 		font-family: 'JetBrains Mono Regular';
-		font-size: 18;
+		font-size: 1em;
 	}
 
 	img {
@@ -71,28 +71,28 @@
 	/* Medium devices (landscape tablets, 768px and up) */
 	@media only screen and (min-width: 768px) {
 		.container {
-			margin-top: 128px;
+			margin-top: 8rem;
 			display: flex;
 			flex-direction: row;
 			align-items: start;
 			justify-content: start;
-			gap: 64px;
+			gap: 4em;
 		}
 
 		h1 {
-			margin-top: -24px;
-			font-size: 56px;
+			margin-top: -1.5rem;
+			font-size: 3.5em;
 		}
 
 		h2 {
-			font-size: 24px;
+			font-size: 1.5em;
 		}
 	}
 
 	/* Large devices (laptops/desktops, 992px and up) */
 	@media only screen and (min-width: 992px) {
 		h1 {
-			font-size: 64px;
+			font-size: 4em;
 		}
 	}
 
@@ -104,11 +104,11 @@
 	/* Extra extra large devices */
 	@media only screen and (min-width: 1400px) {
 		h1 {
-			font-size: 96px;
+			font-size: 6em;
 		}
 
 		h2 {
-			font-size: 28px;
+			font-size: 1.75em;
 		}
 
 		img {
