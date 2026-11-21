@@ -49,7 +49,7 @@
 	}
 
 	const characterInterval = 150;
-	const backspacePause = 2500;
+	const backspacePause = 2000;
 
 	let currentEntry = $state(0);
 	
@@ -80,7 +80,8 @@
 	}
 
 	.content {
-		margin-top: 9rem;
+		margin-top: 15%;
+		margin-bottom: 25%;
 		display: flex;
 		flex-direction: column;
 		align-items: start;
@@ -91,6 +92,7 @@
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
+		white-space: normal;
 	}
 
 	.content, .typewriter {
@@ -114,7 +116,9 @@
 		color: var(--text-secondary);
 		margin-right: -12px;
 		font-family: 'JetBrains Mono Bold';
-		display: block;
+		white-space: normal;
+		text-wrap: wrap;
+		display: inline;
 	}
 
 	/* Extra small devices (phones, 600px and down) */
@@ -138,7 +142,6 @@
 	@media only screen and (min-width: 992px) {
 		.content {
 			flex-direction: column;
-			margin-top: 12.5rem;
 		}
 
 		.typewriter {
@@ -150,7 +153,7 @@
 		}
 
 		.suffix-lg, .period {
-			display: block;
+			display: inline;
 		}
 	}
 
