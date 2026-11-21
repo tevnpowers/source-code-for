@@ -49,24 +49,32 @@
 		<div class="newsletter-container">
 			<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
 		</div>
+		<div class="copyright">
+			© 2026 Tev'n Powers | <a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer">source code</a> for <i>Source Code For</i> | No AI was used in the development of this project.
+		</div>
 	</footer>
 
 	<!-- Footer appears on every route -->
 	<footer class="footer-lg">
 		<!-- TODO: Dynamically generate path -->
-		<div class="path">/home</div>
-		<div class="contact-container">
-			<div class="newsletter-container">
-				<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
+		<div class="controls-container">
+			<div class="path">/home</div>
+			<div class="contact-container">
+				<div class="newsletter-container">
+					<script async src="https://subscribe-forms.beehiiv.com/v3/loader.js" data-beehiiv-form="6dab7cfe-cdb8-4a12-9dfd-88c35e03dbc0"></script>
+				</div>
+				<div class="social-container">
+					<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
+						<GitHubLogo height={26} width={26} />
+					</a>
+					<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
+						<MailIcon height={30} width={30}/>
+					</a>
+				</div>
 			</div>
-			<div class="social-container">
-				<a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer" class="button" aria-label="send email" title="send email">
-					<GitHubLogo height={26} width={26} />
-				</a>
-				<a href="mailto:hi@tev.dev" class="button" aria-label="send email" title="send email">
-					<MailIcon height={30} width={30}/>
-				</a>
-			</div>
+		</div>
+		<div class="copyright">
+			© 2026 Tev'n Powers | <a href="https://github.com/tevnpowers/source-code-for" target="_blank" rel="noopener noreferrer">source code</a> for <i>Source Code For</i> | No AI was used in the development of this project.
 		</div>
 	</footer>
 </div>
@@ -183,6 +191,15 @@
 		justify-content: center;
 	}
 
+	.copyright {
+		font-family: 'JetBrains Mono Regular';
+		font-size: .6em;
+	}
+
+	.copyright a {
+		color: var(--text-secondary);
+	}
+
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 600px) {
 
@@ -201,10 +218,19 @@
 
 		.footer-lg {
 			display: flex;
+			flex-direction: column;
+			align-items: start;
+			justify-content: start;
+			margin: 1.5rem 0;
+			gap: 0.75em;
+		}
+
+		.controls-container {
+			width: 100%;
+			display: flex;
 			flex-direction: row;
 			align-items: flex-end;
 			justify-content: space-between;
-			margin: 1.5rem 0;
 		}
 
 		.contact-container {
@@ -222,6 +248,10 @@
 		.newsletter-container {
 			min-width: 24em;
 		}
+
+		.copyright {
+			font-size: 0.75em;
+		}
 	}
 
 	/* Large devices (laptops/desktops, 992px and up) */
@@ -237,8 +267,8 @@
 			width: 100%;
 		}
 
-		nav a, .path {
-			font-size: 1.35em;
+		.copyright {
+			font-size: .8em;
 		}
 	}
 
